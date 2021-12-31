@@ -11,9 +11,9 @@ public class KhoSieuThi
 {
     static Scanner nhapKhoSieuThi = new Scanner(System.in);
     
-    static List khoSieuThi = new ArrayList<>();
-    static List khoSieuThi2 = new ArrayList<>();
-    static List khoSieuThi3 = new ArrayList<>();
+    static List khoSieuThi = new ArrayList<ThucPham>();
+    static List khoSieuThi2 = new ArrayList<DienMay>();
+    static List khoSieuThi3 = new ArrayList<SanhSu>();
 
     public static void main(String[] args) 
     {
@@ -35,6 +35,7 @@ public class KhoSieuThi
             System.out.println("Chon San Pham Can Thao Tac");
             chonChucNang = nhapKhoSieuThi.nextInt();
             System.out.println("Ban Da Chon Chuc Nang ["+chonChucNang+"]");
+
             switch(chonChucNang)
             {
                 case 1:
@@ -83,6 +84,7 @@ public class KhoSieuThi
                     inThongTinThucPham(khoSieuThi);
                     inThongTinDienMay(khoSieuThi2);
                     inThongTinSanhSu(khoSieuThi3);
+
                 }break;
             }
 
@@ -123,9 +125,9 @@ public class KhoSieuThi
             giaThanh = nhapKhoSieuThi.nextDouble();
             System.out.println("NHAP SO LUONG THUCPHAMKT: ");
             soLuong = nhapKhoSieuThi.nextInt();
-            nhapKhoSieuThi.nextLine();           
+            nhapKhoSieuThi.nextLine();  
+
             khoSieuThi.add(new ThucPham(name, giaThanh, soLuong));
-          
             System.out.println("Thoi gian tao: "+ date);
         }     
     }
@@ -153,10 +155,23 @@ public class KhoSieuThi
 
     public static void thayDoiTTThucPham(List<ThucPham> khoSieuThi)
     {
+
         int vitri;
         System.out.println("Nhap Vi Tri Can Sua: ");
         vitri = nhapKhoSieuThi.nextInt();
-        khoSieuThi.set(vitri, new ThucPham("Cu Khoai Lan", 32000, 7));
+        String name;
+        double gia;
+        int sl;
+
+        System.out.println("Nhap ten: ");
+        nhapKhoSieuThi.nextLine();
+        name = nhapKhoSieuThi.nextLine();
+        System.out.println("Nhap gia: ");
+        gia = nhapKhoSieuThi.nextDouble();
+        System.out.println("Nhap so luong: ");
+        sl = nhapKhoSieuThi.nextInt();
+
+        khoSieuThi.set(vitri, new ThucPham(name, gia, sl));
         System.out.println("Da Sua Thanh Cong ");
 
     }
@@ -230,6 +245,7 @@ public class KhoSieuThi
 
         for(int i = 0; i <3; i++)
         {
+
             System.out.println("NHAP TEN DIEN MAY: ");
             name = nhapKhoSieuThi.nextLine();
             System.out.println("NHAP GIA THANH DIEN MAY: ");
@@ -239,6 +255,7 @@ public class KhoSieuThi
             nhapKhoSieuThi.nextLine();           
             khoSieuThi2.add(new DienMay(name, giaThanh, soLuong));
             System.out.println("Thoi gian tao: "+ date);
+
         }      
     }
     
@@ -257,19 +274,32 @@ public class KhoSieuThi
 
     public static void thayDoiTTTDienMay(List<DienMay> khoSieuThi2)
     {
+
         int vitri;
         System.out.println("Nhap Vi Tri Can Sua: ");
         vitri = nhapKhoSieuThi.nextInt();
-        khoSieuThi2.set(vitri, new DienMay("Noi Com", 12000, 23));
+        String name;
+        double gia;
+        int sl;
+        System.out.println("Nhap ten: ");
+        nhapKhoSieuThi.nextLine();
+        name = nhapKhoSieuThi.nextLine();
+        System.out.println("Nhap gia: ");
+        gia = nhapKhoSieuThi.nextDouble();
+        System.out.println("Nhap so luong: ");
+        sl = nhapKhoSieuThi.nextInt();
+        khoSieuThi2.set(vitri, new DienMay(name, gia, sl));
         System.out.println("Da Sua Thanh Cong ");
-
+       
     }
 
     public static void xoaDienMay(String ten_DienMay ,List<DienMay> khoSieuThi2)
     {
+
         DienMay dienMay= timDienMayTheoTen( ten_DienMay, khoSieuThi2);
             khoSieuThi2.remove(dienMay);
             System.out.println("Da Xoa Thanh Cong");  
+
     }
 
     public static void inThongTinDienMay(List<DienMay> khoSieuThi2)
@@ -314,6 +344,7 @@ public class KhoSieuThi
 
     public static void nhapSanhSu(List<SanhSu> khoSieuThi3)
     {
+
         String name;
         double giaThanh;
         int soLuong;  
@@ -330,6 +361,7 @@ public class KhoSieuThi
             nhapKhoSieuThi.nextLine();           
             khoSieuThi3.add(new SanhSu(name, giaThanh, soLuong));
             System.out.println("Thoi gian tao: "+ date);
+
         }      
     }
 
@@ -348,21 +380,35 @@ public class KhoSieuThi
 
     public static void thayDoiTTSanhSu(List<SanhSu> khoSieuThi3)
     {
+
         int vitri;
         System.out.println("Nhap Vi Tri Can Sua: ");
         vitri = nhapKhoSieuThi.nextInt();
-        khoSieuThi3.set(vitri, new SanhSu("Chen Trung Quoc Cao Cap", 61000, 120));
-        System.out.println("Da Sua Thanh Cong ");
+        String name;
+        double gia;
+        int sl;
 
+        System.out.println("Nhap ten: ");
+        nhapKhoSieuThi.nextLine();
+        name = nhapKhoSieuThi.nextLine();
+        System.out.println("Nhap gia: ");
+        gia = nhapKhoSieuThi.nextDouble();
+        System.out.println("Nhap so luong: ");
+        sl = nhapKhoSieuThi.nextInt();
+        khoSieuThi3.set(vitri, new SanhSu(name, gia, sl));
+        System.out.println("Da Sua Thanh Cong ");
+      
     }
 
    
 
     public static void xoaSanhSu(String ten_SanhSu ,List<SanhSu> khoSieuThi3)
     {
-        SanhSu sanhSu = timSanhSuTheoTen(ten_SanhSu, khoSieuThi3);
+
+            SanhSu sanhSu = timSanhSuTheoTen(ten_SanhSu, khoSieuThi3);
             khoSieuThi3.remove(sanhSu);
             System.out.println("Da Xoa Thanh Cong");  
+
     }
 
     public static void inThongTinSanhSu(List<SanhSu> khoSieuThi3)
@@ -405,7 +451,7 @@ public class KhoSieuThi
                         System.out.println("**************** THUC PHAM ****************");
                         System.out.println("[1] Nhap Them Thong Tin Thuc Pham Vao Danh Sach");
                         System.out.println("[2] Tim Kiem Thong Tin Thuc Pham Theo Ten Va In Ra Thong Tin Thuc Pham Da Tim");
-                        System.out.println("[3] Tim Va Thay Doi Thong Tin Thuc Pham Theo Ten");
+                        System.out.println("[3] Tim Va Thay Doi Thong Tin Thuc Pham Theo Vi Tri");
                         System.out.println("[4] Tim Va Xoa Thong Tin Thuc Pham Theo Ten");
                         System.out.println("[5] In Ra Thong Tin Danh Sach Thuc Pham Cap Nhat Moi Nhat");
                         System.out.println("[6] In Ra Danh Sach Tang Dan Theo Don Gia Cua Thuc Pham");
@@ -498,7 +544,7 @@ public class KhoSieuThi
                         System.out.println("**************** DIEN MAY ****************");
                         System.out.println("[1] Nhap Them Thong Tin Dien May Vao Danh Sach");
                         System.out.println("[2] Tim Kiem Thong Tin Dien May Theo Ten Va In Ra Thong Tin Dien May Da Tim");
-                        System.out.println("[3] Tim Va Thay Doi Thong Tin Dien May Theo Ten");
+                        System.out.println("[3] Tim Va Thay Doi Thong Tin Dien May Theo Vi Tri");
                         System.out.println("[4] Tim Va Xoa Thong Tin Dien May Theo Ten");
                         System.out.println("[5] In Ra Thong Tin Danh Sach Dien May Cap Nhat Moi Nhat");
                         System.out.println("[6] In Ra Danh Sach Tang Dan Theo Don Gia Cua Dien May");
@@ -591,7 +637,7 @@ public class KhoSieuThi
                         System.out.println("**************** SANH SU ****************");
                         System.out.println("[1] Nhap Them Thong Tin Sanh Su Vao Danh Sach");
                         System.out.println("[2] Tim Kiem Thong Tin Sanh Su Theo Ten Va In Ra Thong Tin Sanh Su Da Tim");
-                        System.out.println("[3] Tim Va Thay Doi Thong Tin Sanh Su Theo Ten");
+                        System.out.println("[3] Tim Va Thay Doi Thong Tin Sanh Su Theo Vi Tri");
                         System.out.println("[4] Tim Va Xoa Thong Tin Sanh Su Theo Ten");
                         System.out.println("[5] In Ra Thong Tin Danh Sanh Su May Cap Nhat Moi Nhat");
                         System.out.println("[6] In Ra Danh Sach Tang Dan Theo Don Gia Cua Sanh Su");
