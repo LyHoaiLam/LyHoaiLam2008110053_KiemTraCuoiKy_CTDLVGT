@@ -8,9 +8,11 @@ public class ThucPham
     int maID_ThucPham = 333666;
     double giaTien_ThucPham;
     int soLuongTonKho_ThucPham;
-    Scanner nhapThucPham = new Scanner(System.in);
 
-    
+    void timTrongKhoangGia(double soDau, double soCuoi)
+    {
+       
+    }
     ThucPham()
     {
 
@@ -28,7 +30,7 @@ public class ThucPham
     void inThongTinThucPham()
     {
         System.out.println("Ten ThucPham: " + ten_ThucPham + ", " + "Ma ID ThucPham: " + maID_ThucPham + ", " + "Gia Tien ThucPham: " + giaTien_ThucPham
-        + ", " + "So Luong Ton Kho Thuc Pham: " + soLuongTonKho_ThucPham);
+        + "VND, " + "So Luong Ton Kho Thuc Pham: " + soLuongTonKho_ThucPham);
     }
 
     

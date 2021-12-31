@@ -24,6 +24,6 @@ public class DienMay
     void inThongTinDienMay()
     {
         System.out.println("Ten DienMay: " + ten_DienMay + ", " + "Ma ID DienMay: " + maID_DienMay + ", "
-         + "Gia Tien DienMay: " + giaTien_DienMay + ", " + "So Luong Ton Kho SanhSu: " + soLuongTonKho_DienMay);
+         + "Gia Tien DienMay: " + giaTien_DienMay + "VND, " + "So Luong Ton Kho SanhSu: " + soLuongTonKho_DienMay);
     }           
 }

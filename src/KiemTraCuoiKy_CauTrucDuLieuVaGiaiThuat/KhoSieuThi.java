@@ -1,8 +1,10 @@
 package KiemTraCuoiKy_CauTrucDuLieuVaGiaiThuat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Collections;
 
 public class KhoSieuThi 
@@ -26,13 +28,297 @@ public class KhoSieuThi
             System.out.println("[1] QUAN LY CAC SAN PHAM VE THUC PHAM");
             System.out.println("[2] QUAN LY CAC SAN PHAM VE DIEN MAY");
             System.out.println("[3] QUAN LY CAC SAN PHAM VE SANH SU");
-            System.out.println("[4] THOAT KHOI CHUONG TRINH ");
+            System.out.println("[4] TONG SO LUONG HANG HOA TRONG KHO SIEU THI ");
+            System.out.println("[5] TONG GIA TRI HANG HOA KHO SIEU THI ");
+            System.out.println("[6] THOAT KHOI CHUONG TRINH ");
             System.out.println("Chon San Pham Can Thao Tac");
             chonChucNang = nhapKhoSieuThi.nextInt();
             System.out.println("Ban Da Chon Chuc Nang ["+chonChucNang+"]");
             switch(chonChucNang)
             {
                 case 1:
+                {
+                    ChuongTrinhThucPham();
+                    
+                }break;
+
+                case 2:
+                {
+
+                    ChuongTrinhDienMay();
+
+                }break;
+
+                case 3:
+                {
+                    
+                    ChuongTrinhSanhSu();
+                   
+                }break;     
+                
+                case 4:
+                {
+                   
+                    int soLuongHangHoaThucPham = khoSieuThi.size();
+                    int soLuongHangHoaDienMay = khoSieuThi2.size();
+                    int soLuongHangHoaSanhSu = khoSieuThi3.size();
+
+                    System.out.println("So Luong Hoang Hoa Thuc Pham: " + soLuongHangHoaThucPham);
+                    System.out.println("So Luong Hoang Hoa Dien May: " + soLuongHangHoaDienMay);
+                    System.out.println("So Luong Hoang Hoa Sanh Su: " + soLuongHangHoaSanhSu);
+                    System.out.println("Tong So Luong Hang Hoa Co Trong Sieu Thi Bao Gom Thuc Pham, Dien May, Sanh Su: "
+                    + (soLuongHangHoaThucPham + soLuongHangHoaDienMay + soLuongHangHoaSanhSu));
+
+                }
+
+                case 5:
+                {
+                    System.out.println("Tong Gia Tri Nhap Kho Cua Sieu Thi");
+                    
+                }
+            }
+
+        }while(chonChucNang >=1 && chonChucNang <=5);
+
+    }
+
+   
+
+
+
+
+// THUC PHAM
+   
+    public static void danhSachThucPham(List<ThucPham> khoSieuThi)
+    {
+        khoSieuThi.add(new ThucPham("Hanh Tay", 13000, 2));
+        khoSieuThi.add(new ThucPham("Hanh Tim", 11000, 6));
+        khoSieuThi.add(new ThucPham("Ca Chua", 9000, 12));
+    }
+    public static void nhapThucPham(List<ThucPham> khoSieuThi)
+    {
+      
+        String name;
+        double giaThanh;
+        int soLuong;      
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+            
+        for(int i = 0; i <3; i++)
+        {
+            System.out.println("NHAP TEN THUCPHAMKT: ");
+            name = nhapKhoSieuThi.nextLine();
+            System.out.println("NHAP GIA THANH THUCPHAMKT: ");
+            giaThanh = nhapKhoSieuThi.nextDouble();
+            System.out.println("NHAP SO LUONG THUCPHAMKT: ");
+            soLuong = nhapKhoSieuThi.nextInt();
+            nhapKhoSieuThi.nextLine();           
+            khoSieuThi.add(new ThucPham(name, giaThanh, soLuong));
+          
+            System.out.println("Thoi gian tao: "+ date);
+        }     
+    }
+    public static ThucPham timThucPhamTheoTen(String tenThucPham, List<ThucPham> khoSieuThi)
+    {
+        ThucPham result = null;
+        for(ThucPham thucPham : khoSieuThi)
+        {
+            if(thucPham.ten_ThucPham.equals(tenThucPham))
+            {
+                result = thucPham;
+            }
+        }
+        return result;
+    }
+    public static void xoaThucPham(String ten_ThucPham ,List<ThucPham> khoSieuThi)
+    {
+        ThucPham thucPham= timThucPhamTheoTen(ten_ThucPham, khoSieuThi);
+            khoSieuThi.remove(thucPham);
+            System.out.println("Da Xoa Thanh Cong");            
+    }
+    public static void inThongTinThucPham(List<ThucPham> khoSieuThi)
+    {
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        for (ThucPham thucPham : khoSieuThi) 
+        {
+            thucPham.inThongTinThucPham(); 
+            System.out.println("Ngay Tao: "+ date); 
+        }
+    }
+    public static void sapXepThucPhamTheoDonGiaGiamDan(List<ThucPham> khoSieuThi)
+    {
+        Comparator<ThucPham> comp;
+        comp = new Comparator<ThucPham>() {
+            @Override
+            public int compare(ThucPham o1, ThucPham o2) {
+                // TODO Auto-generated method stub
+                return Double.compare(o1.giaTien_ThucPham, o2.giaTien_ThucPham);
+            }            
+        };
+        Collections.sort(khoSieuThi, comp);
+    }
+    public static void xuatNgauNhienThongTinThucPham(List<ThucPham> khoSieuThi)
+    {
+        Collections.shuffle(khoSieuThi);
+    }
+
+
+
+
+
+
+    
+// DIEN MAY
+    public static void danhSachDienMay(List<DienMay> khoSieuThi2)
+    {
+        khoSieuThi2.add(new DienMay("Tivi Sony", 92000, 7));
+        khoSieuThi2.add(new DienMay("Tu Lanh Toshiba", 17000, 2));
+        khoSieuThi2.add(new DienMay("Noi Chien Khong Dau", 13500, 4));
+    }
+    public static void nhapDienMay(List<DienMay> khoSieuThi2)
+    {
+        String name;
+        double giaThanh;
+        int soLuong;      
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        for(int i = 0; i <3; i++)
+        {
+            System.out.println("NHAP TEN DIEN MAY: ");
+            name = nhapKhoSieuThi.nextLine();
+            System.out.println("NHAP GIA THANH DIEN MAY: ");
+            giaThanh = nhapKhoSieuThi.nextDouble();
+            System.out.println("NHAP SO LUONG DIEN MAY: ");
+            soLuong = nhapKhoSieuThi.nextInt();
+            nhapKhoSieuThi.nextLine();           
+            khoSieuThi2.add(new DienMay(name, giaThanh, soLuong));
+            System.out.println("Thoi gian tao: "+ date);
+        }      
+    }
+    public static DienMay timDienMayTheoTen(String tenDienMay, List<DienMay> khoSieuThi2)
+    {
+        DienMay result = null;
+        for(DienMay dienMay : khoSieuThi2)
+        {
+            if(dienMay.ten_DienMay.equals(tenDienMay))
+            {
+                result = dienMay;
+            }
+        }
+        return result;
+    }
+    public static void xoaDienMay(String ten_DienMay ,List<DienMay> khoSieuThi2)
+    {
+        DienMay dienMay= timDienMayTheoTen( ten_DienMay, khoSieuThi2);
+            khoSieuThi2.remove(dienMay);
+            System.out.println("Da Xoa Thanh Cong");  
+    }
+    public static void inThongTinDienMay(List<DienMay> khoSieuThi2)
+    {
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        for (DienMay dienMay : khoSieuThi2) 
+        {
+            dienMay.inThongTinDienMay();
+            System.out.println("Ngay tao: "+ date);
+        }
+    }
+    public static void sapXepDienMayTheoDonGiaGiamDan(List<DienMay> khoSieuThi2)
+    {
+        Comparator<DienMay> comp;
+        comp = new Comparator<DienMay>() {
+            @Override
+            public int compare(DienMay o1, DienMay o2) {
+                // TODO Auto-generated method stub
+                return Double.compare(o1.giaTien_DienMay, o2.giaTien_DienMay);
+            }            
+        };
+        Collections.sort(khoSieuThi2, comp);
+    }
+    public static void xuatNgauNhienThongTinDienMay(List<DienMay> khoSieuThi2)
+    {
+        Collections.shuffle(khoSieuThi2);
+    }
+
+
+
+    // SANH SU
+
+    public static void danhSachsSanhSu(List<SanhSu> khoSieuThi3)
+    {
+        khoSieuThi3.add(new SanhSu("Chen Cao Cap Nhat Ban", 17000, 32));
+        khoSieuThi3.add(new SanhSu("Bo 10 To An Pho Ha Noi", 220000, 56));
+        khoSieuThi3.add(new SanhSu("Dia Cao Cap Nhat Ban", 18500, 24));
+    }
+    public static void nhapSanhSu(List<SanhSu> khoSieuThi3)
+    {
+        String name;
+        double giaThanh;
+        int soLuong;  
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();    
+        for(int i = 0; i <3; i++)
+        {
+            System.out.println("NHAP TEN SANH SU: ");
+            name = nhapKhoSieuThi.nextLine();
+            System.out.println("NHAP GIA THANH SANH SU: ");
+            giaThanh = nhapKhoSieuThi.nextDouble();
+            System.out.println("NHAP SO LUONG SANH SU: ");
+            soLuong = nhapKhoSieuThi.nextInt();
+            nhapKhoSieuThi.nextLine();           
+            khoSieuThi3.add(new SanhSu(name, giaThanh, soLuong));
+            System.out.println("Thoi gian tao: "+ date);
+        }      
+    }
+    public static SanhSu timSanhSuTheoTen(String tenSanhSu, List<SanhSu> khoSieuThi3)
+    {
+        SanhSu result = null;
+        for(SanhSu sanhSu : khoSieuThi3)
+        {
+            if(sanhSu.ten_SanhSu.equals(tenSanhSu))
+            {
+                result = sanhSu;
+            }
+        }
+        return result;
+    }
+    public static void xoaSanhSu(String ten_SanhSu ,List<SanhSu> khoSieuThi3)
+    {
+        SanhSu sanhSu = timSanhSuTheoTen(ten_SanhSu, khoSieuThi3);
+            khoSieuThi3.remove(sanhSu);
+            System.out.println("Da Xoa Thanh Cong");  
+    }
+    public static void inThongTinSanhSu(List<SanhSu> khoSieuThi3)
+    {
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        for (SanhSu sanhSu : khoSieuThi3) 
+        {
+            sanhSu.inThongTinSanhSuKT();
+            System.out.println("Ngay tao: "+ date);
+        }
+    }
+    public static void sapXepSanhSuTheoDonGiaGiamDan(List<SanhSu> khoSieuThi3)
+    {
+        Comparator<SanhSu> comp;
+        comp = new Comparator<SanhSu>() {
+            @Override
+            public int compare(SanhSu o1, SanhSu o2) {
+                // TODO Auto-generated method stub
+                return Double.compare(o1.giaTien_SanhSu, o2.giaTien_SanhSu);
+            }            
+        };
+        Collections.sort(khoSieuThi3, comp);
+    }
+    public static void xuatNgauNhienThongTinSanhSu(List<SanhSu> khoSieuThi3)
+    {
+        Collections.shuffle(khoSieuThi3);
+    }
+
+
+
+                public static void ChuongTrinhThucPham()
                 {
                     int xuLyThucPham;
                     do
@@ -80,7 +366,16 @@ public class KhoSieuThi
                             System.out.println("Nhap Ten Thuc Pham Can Xoa: ");
                             String ten_ThucPham;
                             ten_ThucPham = nhapKhoSieuThi.nextLine();
-                            xoaThucPham(ten_ThucPham, khoSieuThi);
+                            ThucPham thucPham = timThucPhamTheoTen(ten_ThucPham, khoSieuThi);
+                            if(thucPham != null)
+                            {
+                                xoaThucPham(ten_ThucPham, khoSieuThi);
+                                System.out.println("Da Xoa Thanh Cong: "+" [ " + ten_ThucPham +" ] " + "Ra Khoi Danh Sach");
+                            }
+                            else
+                            {
+                                System.out.println("San Pham Khong Ton Tai: ");
+                            }
                         }
 
                         if(xuLyThucPham == 5)//5 In Ra Thong Tin Danh Sach Thuc Pham Cap Nhat Moi Nhat
@@ -109,9 +404,9 @@ public class KhoSieuThi
 
                     }while(xuLyThucPham >= 1 && xuLyThucPham <=8);
                        
-                }break;
+                }
 
-                case 2:
+                public static void ChuongTrinhDienMay()
                 {
                     int xuLyDienMay;
                     do
@@ -164,13 +459,22 @@ public class KhoSieuThi
                             System.out.println("Nhap Ten Dien May Can Xoa: ");
                             String ten_DienMay;
                             ten_DienMay = nhapKhoSieuThi.nextLine();
-                            xoaDienMay(ten_DienMay, khoSieuThi2);
+                            DienMay dienMay = timDienMayTheoTen(ten_DienMay, khoSieuThi2);
+                            if(dienMay != null)
+                            {
+                                xoaDienMay(ten_DienMay, khoSieuThi2);
+                                System.out.println("Da Xoa Thanh Cong: "+" [ " + ten_DienMay +" ] " + "Ra Khoi Danh Sach");
+                            }
+                            else
+                            {
+                                System.out.println("San Pham Khong Ton Tai: ");
+                            }
                         }
 
                         if(xuLyDienMay == 5)
                         {
                             inThongTinDienMay(khoSieuThi2);
-                            System.out.println(khoSieuThi2);
+                            
                         }
 
                         if(xuLyDienMay == 6)
@@ -192,13 +496,12 @@ public class KhoSieuThi
                             inThongTinDienMay(khoSieuThi2);
                         } 
 
-                    }while(xuLyDienMay >= 1 && xuLyDienMay <= 8);    
+                    }while(xuLyDienMay >= 1 && xuLyDienMay <= 8);  
+                }
 
-                }break;
-
-                case 3:
+                public static void ChuongTrinhSanhSu()
                 {
-                    int xuLySanhSu;
+                int xuLySanhSu;
                     do
                     {
                         System.out.println();
@@ -228,7 +531,7 @@ public class KhoSieuThi
                             System.out.println("Nhap Ten SANH SU Can Tim: ");
                             String ten;
                             ten = nhapKhoSieuThi.nextLine();
-                            SanhSu sanhSu = timSanhSanhTheoTen(ten, khoSieuThi3);
+                            SanhSu sanhSu = timSanhSuTheoTen(ten, khoSieuThi3);
                             if(sanhSu != null)
                             {
                                 sanhSu.inThongTinSanhSuKT();
@@ -249,7 +552,16 @@ public class KhoSieuThi
                             System.out.println("Nhap Ten Sanh Su Can Xoa: ");
                             String ten_SanhSu;
                             ten_SanhSu = nhapKhoSieuThi.nextLine();
-                            xoaSanhSu(ten_SanhSu, khoSieuThi3);
+                            SanhSu sanhSu = timSanhSuTheoTen(ten_SanhSu, khoSieuThi3);
+                            if(sanhSu != null)
+                            {
+                                xoaSanhSu(ten_SanhSu, khoSieuThi3);
+                                System.out.println("Da Xoa Thanh Cong: "+" [ " + ten_SanhSu +" ] " + "Ra Khoi Danh Sach");
+                            }
+                            else
+                            {
+                                System.out.println("San Pham Khong Ton Tai: ");
+                            }
                         }
 
                         if(xuLySanhSu == 5)
@@ -276,227 +588,9 @@ public class KhoSieuThi
                             inThongTinSanhSu(khoSieuThi3);
                         }
 
-                    }while(xuLySanhSu >= 1 && xuLySanhSu <= 8);   
+                    }while(xuLySanhSu >= 1 && xuLySanhSu <= 8);  
+                } 
 
-                }break;                
-            }
-
-        }while(chonChucNang >=1 && chonChucNang <=3);
-
-    }
-
-
-
-
-
-
-// THUC PHAM
-    public static void danhSachThucPham(List<ThucPham> khoSieuThi)
-    {
-        khoSieuThi.add(new ThucPham("Hanh Tay", 13000, 2));
-        khoSieuThi.add(new ThucPham("Hanh Tim", 11000, 6));
-        khoSieuThi.add(new ThucPham("Ca Chua", 9000, 12));
-    }
-    public static void nhapThucPham(List<ThucPham> khoSieuThi)
-    {
-      
-        String name;
-        double giaThanh;
-        int soLuong;      
-        for(int i = 0; i <3; i++)
-        {
-            System.out.println("NHAP TEN THUCPHAMKT: ");
-            name = nhapKhoSieuThi.nextLine();
-            System.out.println("NHAP GIA THANH THUCPHAMKT: ");
-            giaThanh = nhapKhoSieuThi.nextDouble();
-            System.out.println("NHAP SO LUONG THUCPHAMKT: ");
-            soLuong = nhapKhoSieuThi.nextInt();
-            nhapKhoSieuThi.nextLine();           
-            khoSieuThi.add(new ThucPham(name, giaThanh, soLuong));
-        }     
-    }
-    public static ThucPham timThucPhamTheoTen(String tenThucPham, List<ThucPham> khoSieuThi)
-    {
-        ThucPham result = null;
-        for(ThucPham thucPham : khoSieuThi)
-        {
-            if(thucPham.ten_ThucPham.equals(tenThucPham))
-            {
-                result = thucPham;
-            }
-        }
-        return result;
-    }
-    public static void xoaThucPham(String ten_ThucPham ,List<ThucPham> khoSieuThi)
-    {
-        ThucPham thucPham= timThucPhamTheoTen(ten_ThucPham, khoSieuThi);
-            khoSieuThi.remove(thucPham);
-            System.out.println("Da Xoa Thanh Cong");               
-    }
-    public static void inThongTinThucPham(List<ThucPham> khoSieuThi)
-    {
-        for (ThucPham thucPham : khoSieuThi) 
-        {
-            thucPham.inThongTinThucPham();  
-        }
-    }
-    public static void sapXepThucPhamTheoDonGiaGiamDan(List<ThucPham> khoSieuThi)
-    {
-        Comparator<ThucPham> comp;
-        comp = new Comparator<ThucPham>() {
-            @Override
-            public int compare(ThucPham o1, ThucPham o2) {
-                // TODO Auto-generated method stub
-                return Double.compare(o1.giaTien_ThucPham, o2.giaTien_ThucPham);
-            }            
-        };
-        Collections.sort(khoSieuThi, comp);
-    }
-    public static void xuatNgauNhienThongTinThucPham(List<ThucPham> khoSieuThi)
-    {
-        Collections.shuffle(khoSieuThi);
-    }
-
-
-
-
-
-
-    
-// DIEN MAY
-    public static void danhSachDienMay(List<DienMay> khoSieuThi2)
-    {
-        khoSieuThi2.add(new DienMay("TIVI SONY", 92000, 7));
-        khoSieuThi2.add(new DienMay("TU LANH TOSHIBA", 17000, 2));
-        khoSieuThi2.add(new DienMay("NOI CHIEN KHONG DAU LG", 13500, 4));
-    }
-    public static void nhapDienMay(List<DienMay> khoSieuThi2)
-    {
-        String name;
-        double giaThanh;
-        int soLuong;      
-        for(int i = 0; i <3; i++)
-        {
-            System.out.println("NHAP TEN DIEN MAY: ");
-            name = nhapKhoSieuThi.nextLine();
-            System.out.println("NHAP GIA THANH DIEN MAY: ");
-            giaThanh = nhapKhoSieuThi.nextDouble();
-            System.out.println("NHAP SO LUONG DIEN MAY: ");
-            soLuong = nhapKhoSieuThi.nextInt();
-            nhapKhoSieuThi.nextLine();           
-            khoSieuThi2.add(new DienMay(name, giaThanh, soLuong));
-        }      
-    }
-    public static DienMay timDienMayTheoTen(String tenDienMay, List<DienMay> khoSieuThi2)
-    {
-        DienMay result = null;
-        for(DienMay dienMay : khoSieuThi2)
-        {
-            if(dienMay.ten_DienMay.equals(tenDienMay))
-            {
-                result = dienMay;
-            }
-        }
-        return result;
-    }
-    public static void xoaDienMay(String ten_DienMay ,List<DienMay> khoSieuThi2)
-    {
-        DienMay dienMay= timDienMayTheoTen( ten_DienMay, khoSieuThi2);
-            khoSieuThi2.remove(dienMay);
-            System.out.println("Da Xoa Thanh Cong");  
-    }
-    public static void inThongTinDienMay(List<DienMay> khoSieuThi2)
-    {
-        for (DienMay dienMay : khoSieuThi2) 
-        {
-            dienMay.inThongTinDienMay();
-        }
-    }
-    public static void sapXepDienMayTheoDonGiaGiamDan(List<DienMay> khoSieuThi2)
-    {
-        Comparator<DienMay> comp;
-        comp = new Comparator<DienMay>() {
-            @Override
-            public int compare(DienMay o1, DienMay o2) {
-                // TODO Auto-generated method stub
-                return Double.compare(o1.giaTien_DienMay, o2.giaTien_DienMay);
-            }            
-        };
-        Collections.sort(khoSieuThi2, comp);
-    }
-    public static void xuatNgauNhienThongTinDienMay(List<DienMay> khoSieuThi2)
-    {
-        Collections.shuffle(khoSieuThi2);
-    }
-
-
-
-    // SANH SU
-
-    public static void danhSachsSanhSu(List<SanhSu> khoSieuThi3)
-    {
-        khoSieuThi3.add(new SanhSu("Chen Cao Cap Nhat Ban", 17000, 32));
-        khoSieuThi3.add(new SanhSu("Bo 10 To An Pho Ha Noi", 220000, 56));
-        khoSieuThi3.add(new SanhSu("Dia Cao Cap Nhat Ban", 18500, 24));
-    }
-    public static void nhapSanhSu(List<SanhSu> khoSieuThi3)
-    {
-        String name;
-        double giaThanh;
-        int soLuong;      
-        for(int i = 0; i <3; i++)
-        {
-            System.out.println("NHAP TEN SANH SU: ");
-            name = nhapKhoSieuThi.nextLine();
-            System.out.println("NHAP GIA THANH SANH SU: ");
-            giaThanh = nhapKhoSieuThi.nextDouble();
-            System.out.println("NHAP SO LUONG SANH SU: ");
-            soLuong = nhapKhoSieuThi.nextInt();
-            nhapKhoSieuThi.nextLine();           
-            khoSieuThi3.add(new SanhSu(name, giaThanh, soLuong));
-        }      
-    }
-    public static SanhSu timSanhSanhTheoTen(String tenSanhSu, List<SanhSu> khoSieuThi3)
-    {
-        SanhSu result = null;
-        for(SanhSu sanhSu : khoSieuThi3)
-        {
-            if(sanhSu.ten_SanhSu.equals(tenSanhSu))
-            {
-                result = sanhSu;
-            }
-        }
-        return result;
-    }
-    public static void xoaSanhSu(String ten_SanhSu ,List<SanhSu> khoSieuThi3)
-    {
-        SanhSu sanhSu = timSanhSanhTheoTen(ten_SanhSu, khoSieuThi3);
-            khoSieuThi3.remove(sanhSu);
-            System.out.println("Da Xoa Thanh Cong");  
-    }
-    public static void inThongTinSanhSu(List<SanhSu> khoSieuThi3)
-    {
-        for (SanhSu sanhSu : khoSieuThi3) 
-        {
-            sanhSu.inThongTinSanhSuKT();
-        }
-    }
-    public static void sapXepSanhSuTheoDonGiaGiamDan(List<SanhSu> khoSieuThi3)
-    {
-        Comparator<SanhSu> comp;
-        comp = new Comparator<SanhSu>() {
-            @Override
-            public int compare(SanhSu o1, SanhSu o2) {
-                // TODO Auto-generated method stub
-                return Double.compare(o1.giaTien_SanhSu, o2.giaTien_SanhSu);
-            }            
-        };
-        Collections.sort(khoSieuThi3, comp);
-    }
-    public static void xuatNgauNhienThongTinSanhSu(List<SanhSu> khoSieuThi3)
-    {
-        Collections.shuffle(khoSieuThi3);
-    }
 
 
 

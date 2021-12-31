@@ -24,6 +24,6 @@ public class SanhSu
     void inThongTinSanhSuKT()
     {
         System.out.println("Ten SanhSu: " + ten_SanhSu + ", " + "Ma ID SanhSu: " + maID_SanhSu + ", "
-         + "Gia Tien SanhSu: " + giaTien_SanhSu + ", " + "So Luong Ton Kho SanhSu: " + soLuongTonKho_SanhSu);
+         + "Gia Tien SanhSu: " + giaTien_SanhSu + "VND, " + "So Luong Ton Kho SanhSu: " + soLuongTonKho_SanhSu);
     }       
 }
