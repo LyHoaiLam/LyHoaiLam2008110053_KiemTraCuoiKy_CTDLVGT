@@ -151,6 +151,16 @@ public class KhoSieuThi
         return result;
     }
 
+    public static void thayDoiTTThucPham(List<ThucPham> khoSieuThi)
+    {
+        int vitri;
+        System.out.println("Nhap Vi Tri Can Sua: ");
+        vitri = nhapKhoSieuThi.nextInt();
+        khoSieuThi.set(vitri, new ThucPham("Cu Khoai Lan", 32000, 7));
+        System.out.println("Da Sua Thanh Cong ");
+
+    }
+
     public static void xoaThucPham(String ten_ThucPham ,List<ThucPham> khoSieuThi)
     {
 
@@ -245,6 +255,16 @@ public class KhoSieuThi
         return result;
     }
 
+    public static void thayDoiTTTDienMay(List<DienMay> khoSieuThi2)
+    {
+        int vitri;
+        System.out.println("Nhap Vi Tri Can Sua: ");
+        vitri = nhapKhoSieuThi.nextInt();
+        khoSieuThi2.set(vitri, new DienMay("Noi Com", 12000, 23));
+        System.out.println("Da Sua Thanh Cong ");
+
+    }
+
     public static void xoaDienMay(String ten_DienMay ,List<DienMay> khoSieuThi2)
     {
         DienMay dienMay= timDienMayTheoTen( ten_DienMay, khoSieuThi2);
@@ -326,10 +346,17 @@ public class KhoSieuThi
         return result;
     }
 
-    public static void thayDoiThongTinThucPham(List<ThucPham> khoSieuThi)
+    public static void thayDoiTTSanhSu(List<SanhSu> khoSieuThi3)
     {
-       
+        int vitri;
+        System.out.println("Nhap Vi Tri Can Sua: ");
+        vitri = nhapKhoSieuThi.nextInt();
+        khoSieuThi3.set(vitri, new SanhSu("Chen Trung Quoc Cao Cap", 61000, 120));
+        System.out.println("Da Sua Thanh Cong ");
+
     }
+
+   
 
     public static void xoaSanhSu(String ten_SanhSu ,List<SanhSu> khoSieuThi3)
     {
@@ -414,7 +441,7 @@ public class KhoSieuThi
 
                         if(xuLyThucPham == 3)
                         {
-                           
+                            thayDoiTTThucPham(khoSieuThi);
                         }
 
                         if(xuLyThucPham == 4)
@@ -507,7 +534,7 @@ public class KhoSieuThi
 
                         if(xuLyDienMay == 3)
                         {
-
+                            thayDoiTTTDienMay(khoSieuThi2);
                         }
 
                         if(xuLyDienMay == 4)
@@ -600,7 +627,7 @@ public class KhoSieuThi
 
                         if(xuLySanhSu == 3)
                         {
-
+                            thayDoiTTSanhSu(khoSieuThi3);
                         }
 
                         if(xuLySanhSu == 4)
