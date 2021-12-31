@@ -1,12 +1,16 @@
 package KiemTraCuoiKy_CauTrucDuLieuVaGiaiThuat;
 
+import java.util.Scanner;
+
 public class ThucPham 
 {
-    String ten_ThucPhamTK;
-    int maID_ThucPhamKT = 333666;
-    double giaTien_ThucPhamKT;
-    int soLuongTonKho_ThucPhamKT;
+    String ten_ThucPham;
+    int maID_ThucPham = 333666;
+    double giaTien_ThucPham;
+    int soLuongTonKho_ThucPham;
+    Scanner nhapThucPham = new Scanner(System.in);
 
+    
     ThucPham()
     {
 
@@ -15,22 +19,17 @@ public class ThucPham
 
     ThucPham(String ten, double gia, int sl)
     {
-        ten_ThucPhamTK = ten;
-        giaTien_ThucPhamKT = gia;
-        soLuongTonKho_ThucPhamKT = sl;
+        ten_ThucPham = ten;
+        giaTien_ThucPham = gia;
+        soLuongTonKho_ThucPham = sl;
     }
 
 
-    void inThongTinThucPhamKT()
+    void inThongTinThucPham()
     {
-        System.out.println("Ten ThucPham: " + ten_ThucPhamTK + ", " + "Ma ID ThucPham: " + maID_ThucPhamKT + ", " + "Gia Tien ThucPham: " + giaTien_ThucPhamKT
-        + ", " + "So Luong Ton Kho Thuc Pham: " + soLuongTonKho_ThucPhamKT);
+        System.out.println("Ten ThucPham: " + ten_ThucPham + ", " + "Ma ID ThucPham: " + maID_ThucPham + ", " + "Gia Tien ThucPham: " + giaTien_ThucPham
+        + ", " + "So Luong Ton Kho Thuc Pham: " + soLuongTonKho_ThucPham);
     }
 
-    void tongGiaTriHangHoaThucPhamKT()
-    {
-        
-       double tong = giaTien_ThucPhamKT + giaTien_ThucPhamKT;
-        
-    }
+    
 }
